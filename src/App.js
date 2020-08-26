@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
+import HeaderText from './componenets/HeaderText'
 
 function App() {
   return (
     <div className="App">
-      <div className="Main">
-        <h1>Hello World! This is demo text title.</h1>
+
+      <main className="Main">
+        <HeaderText name="The New You!"/>
+
         <div className ="ContentWrapper">
           <div className="NavWrapper">
             <h3>
@@ -26,7 +29,9 @@ function App() {
               </p>
           </div>
         </div>
-      </div>
+
+      </main>
+
     </div>
   );
 }
