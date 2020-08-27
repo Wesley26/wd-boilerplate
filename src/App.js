@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Header from './componenets/Header'
 import HeaderText from './componenets/HeaderText'
 
 function App() {
@@ -7,6 +8,8 @@ function App() {
     <div className="App">
 
       <main className="Main">
+        <Header />
+        
         <HeaderText name="The New You!"/>
 
         <div className ="ContentWrapper">
