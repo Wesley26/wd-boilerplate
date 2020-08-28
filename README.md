@@ -1,6 +1,12 @@
 Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Implements [Tailwind CSS](https://tailwindcss.com/)
 
 ## Information
+
+# Important Instructions
+
+When first installing, run `npm install`
+For Tailwind CSS dependency, make sure to run `npm build:css`
 
 ### Purpose of Repo
 
