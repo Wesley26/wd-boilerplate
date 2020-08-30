@@ -6,7 +6,7 @@ Implements [Tailwind CSS](https://tailwindcss.com/) and [PostCSS](https://www.np
 # Important Instructions
 
 When first installing, run `npm install`
-For Tailwind CSS dependency, make sure to run `npm run build:css` if you do not see tailwind.css. Twilwind.css file is ignored.
+For Tailwind CSS dependency, make sure to run `npm run build:css` if you do not see tailwind.css. Tailwind.css file is ignored.
 
 ### Purpose of Repo
 
