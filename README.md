@@ -1,5 +1,5 @@
 Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Implements [Tailwind CSS](https://tailwindcss.com/) and [PostCSS](https://www.npmjs.com/package/postcss)
+Implements [Tailwind CSS](https://tailwindcss.com/), [PostCSS](https://www.npmjs.com/package/postcss), and [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react).
 
 # Information
 
