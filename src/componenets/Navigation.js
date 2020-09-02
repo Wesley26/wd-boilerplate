@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import {useTransition, animated} from 'react-spring'
+
 
 
 function Navigation() {
@@ -8,38 +10,69 @@ function Navigation() {
     /*
     Conditional rendering
     showMenu - Menu variable in hook.
-    setShowMenu - sets the useState from false to true and vice versa.
-    navMenu - JSX variable for the Navigation menu.
-    navMenuMask - Nav Menu mask variable, listens onClick to always close menu.
+    setShowMenu - Sets the useState from false to true and vice versa.
+    maskTransitions - Constant variable for mask transitions, mask behind actual menu.
+    menuTransitions - Constant variable for menu transitions, actual menu content.
     */
+   
     const [showMenu, setShowMenu] = useState(false);
-    let navMenu;
-    let navMenuMask;
 
-    if(showMenu === true) {
-        navMenu = <div className="border-solid border-gray-500 bg-gray-300 fixed top-0 left-0 w-3/5 h-full z-50 shadow">
-                    This is the Menu!
-                    <br/>
-                    Click outside of the menu to close.
-                  </div>;
-        navMenuMask = <div className="bg-black bg-opacity-50 fixed top-0 left-0 w-full h-full z-50"
-                           onClick={() => setShowMenu(false)}>
-                  </div>
-    };
+    const maskTransitions = useTransition(showMenu, null, {
+        from: { position: 'absolute', opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+    });
+
+    const menuTransitions = useTransition(showMenu, null, {
+        from: { opacity: 0, transform: 'translateX(-100%)' },
+        enter: { opacity: 1, transform: 'translateX(0%)' },
+        leave: { opacity: 0, transform: 'translateX(-100%)' },
+    });
 
     return (
-        <nav className="p-3 absolute right-0 float-right">
-            <span className="text-l">
+        <nav>
+            <span className="p-3 absolute right-0 float-right text-l">
                 <FontAwesomeIcon 
                     icon={faBars}
 
                     onClick={() => setShowMenu(!showMenu)}
                 />
             </span>
-
-            { navMenuMask }
-
-            { navMenu }
+            {
+                maskTransitions.map(({ item, key, props }) =>
+                    item && 
+                    <animated.div 
+                        key={key} 
+                        style={props}
+                        className="bg-black bg-opacity-50 fixed top-0 left-0 w-full h-full z-50"
+                        onClick={() => setShowMenu(false)}
+                    >
+                    </animated.div>
+                ) 
+            }
+            {
+                menuTransitions.map(({ item, key, props }) =>
+                    item && 
+                    <animated.div 
+                        key={key} 
+                        style={props}
+                        className="p-3 border-solid border-gray-500 bg-gray-300 fixed top-0 left-0 w-3/5 h-full z-50 shadow"
+                    >
+                        <span>
+                            <h3 className="font-semibold">
+                                Main Menu
+                                <br/>
+                                Click outside of the menu to close.
+                            </h3>
+                        </span>
+                        <br/>
+                        <br/>
+                        <ul>
+                            <li>Home</li>
+                        </ul>
+                    </animated.div>
+                ) 
+            }
         </nav>
     );
 };
