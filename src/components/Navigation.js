@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
+import NavigationMenu from './NavigationMenu'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {useTransition, animated} from 'react-spring'
-
 
 
 function Navigation() {
@@ -13,6 +13,8 @@ function Navigation() {
     setShowMenu - Sets the useState from false to true and vice versa.
     maskTransitions - Constant variable for mask transitions, mask behind actual menu.
     menuTransitions - Constant variable for menu transitions, actual menu content.
+
+    NavigationMenu takes a prop called closeMenu, See NavigationMenu.js
     */
    
     const [showMenu, setShowMenu] = useState(false);
@@ -56,20 +58,11 @@ function Navigation() {
                     <animated.div 
                         key={key} 
                         style={props}
-                        className="p-3 border-solid border-gray-500 bg-gray-300 fixed top-0 left-0 w-3/5 h-full z-50 shadow"
+                        className="p-3 border-solid border-gray-500 bg-gray-300 fixed top-0 left-0 w-2/5 h-full z-50 shadow"
                     >
-                        <span>
-                            <h3 className="font-semibold">
-                                Main Menu
-                                <br/>
-                                Click outside of the menu to close.
-                            </h3>
-                        </span>
-                        <br/>
-                        <br/>
-                        <ul>
-                            <li>Home</li>
-                        </ul>
+                        <NavigationMenu 
+                            closeMenu={() => setShowMenu(false)}
+                        />
                     </animated.div>
                 ) 
             }
